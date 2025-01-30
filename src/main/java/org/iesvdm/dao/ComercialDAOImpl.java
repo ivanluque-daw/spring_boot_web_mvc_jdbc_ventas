@@ -42,6 +42,21 @@ public class ComercialDAOImpl implements ComercialDAO {
     }
 
     @Override
+    public List<Comercial> findWithPedidosByCliente(long clienteId) {
+        List<Comercial> comerciales = jdbcTemplate.query(
+                "SELECT c.id, c.nombre, c.apellido1, c.apellido2, c.comisión FROM comercial as c JOIN pedido as p ON c.id = p.id_comercial WHERE p.id_cliente = ? GROUP BY c.id",
+                (rs, rowNum) -> new Comercial(rs.getInt("id"),
+                        rs.getString("nombre"),
+                        rs.getString("apellido1"),
+                        rs.getString("apellido2"),
+                        rs.getFloat("comisión")),
+                clienteId
+        );
+
+        return comerciales;
+    }
+
+    @Override
     public void update(Comercial cliente) {
     }
 

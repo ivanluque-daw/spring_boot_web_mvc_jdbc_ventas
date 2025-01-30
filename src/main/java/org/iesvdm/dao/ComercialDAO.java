@@ -10,6 +10,7 @@ public interface ComercialDAO {
 	
 	public List<Comercial> getAll();
 	public Optional<Comercial>  find(int id);
+	public List<Comercial> findWithPedidosByCliente(long clienteId);
 	
 	public void update(Comercial cliente);
 	

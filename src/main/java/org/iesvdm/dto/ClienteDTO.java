@@ -1,7 +1,10 @@
 package org.iesvdm.dto;
 
+import lombok.Data;
+
 import java.util.List;
 
+@Data
 public class ClienteDTO {
     private long id;
     private String nombre;
@@ -10,5 +13,5 @@ public class ClienteDTO {
     private String ciudad;
     private int categoria;
 
-    private List<PedidoDTO> pedidos;
+    private List<ComercialDTO> comercialesPedidos;
 }

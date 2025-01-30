@@ -3,6 +3,7 @@ package org.iesvdm.controller;
 import java.util.List;
 
 import jakarta.validation.Valid;
+import org.iesvdm.dto.ComercialDTO;
 import org.iesvdm.model.Cliente;
 import org.iesvdm.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class ClienteController {
 	@Autowired
 	private ClienteService clienteService;
-	
+
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String list(Model model) {
 		List<Cliente> listaClientes =  clienteService.listAll();
@@ -51,7 +52,10 @@ public class ClienteController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public String details(@PathVariable Integer id, Model model) {
 		Cliente cliente = clienteService.find(id);
+		List<ComercialDTO> comerciales = clienteService.findWithComerciales(id);
+
 		model.addAttribute("cliente", cliente);
+		model.addAttribute("comerciales", comerciales);
 
 		return "clientes/details";
 	}
