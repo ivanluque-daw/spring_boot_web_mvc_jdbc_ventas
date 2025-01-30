@@ -1,5 +1,7 @@
 package org.iesvdm.dao;
 
+import java.util.Map;
+
 public interface PedidoDAO {
-    public long countByComercialAndCliente(long comercialId, long clienteId);
+    public Map<String, Long> countByComercialAndCliente(long comercialId, long clienteId);
 }

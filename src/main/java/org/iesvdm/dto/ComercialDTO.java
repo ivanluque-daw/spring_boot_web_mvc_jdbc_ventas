@@ -11,5 +11,9 @@ public class ComercialDTO {
     private float comision;
 
     private long numeroPedidos;
+    private long pedidosTrimestre;
+    private long pedidosSemestre;
+    private long pedidosAnio;
+    private long pedidosLustro;
 }
 

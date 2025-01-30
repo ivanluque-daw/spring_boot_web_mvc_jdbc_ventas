@@ -45,39 +45,39 @@
         </form>
 
         <div class="accordion mt-4" id="comerciales">
-            <th:block th:each="comercial, iterStat : ${comerciales}">
+            <th:block th:each="comercial, i : ${cliente.comercialesPedidos}">
                 <div class="accordion-item">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                th:data-bs-target="'#comercial' + ${iterStat.index}" aria-expanded="false"
-                                th:aria-controls="'comercial' + ${iterStat.index}">
+                                th:data-bs-target="'#comercial' + ${i.index}" aria-expanded="false"
+                                th:aria-controls="'comercial' + ${i.index}">
                             <div class="me-auto d-flex align-items-center">
-                                <div class="fw-bold" th:text="${comercial.nombre}"></div>
+                                <div class="fw-bold" th:text="${comercial.nombre + ' ' + comercial.apellido1 + ' ' + comercial.apellido2}"></div>
                                 <span class="badge text-bg-primary rounded-pill ms-2" th:text="${comercial.numeroPedidos} + ' pedidos'"></span>
                             </div>
                         </button>
                     </h2>
-                    <div th:id="comercial + ${iterStat.index}"  class="accordion-collapse collapse" data-bs-parent="#comerciales">
+                    <div th:id="comercial + ${i.index}"  class="accordion-collapse collapse" data-bs-parent="#comerciales">
                         <div class="accordion-body mt-3">
                             <p class="d-flex justify-content-between">
-                                <span>Último trimestre</span>
-                                <span class="dots"></span>
-                                <span>150 pedidos</span>
+                                <span class="text-body-secondary">Último trimestre</span>
+                                <span class="dots text-body-tertiary"></span>
+                                <span class="text-body-secondary" th:text="${comercial.pedidosTrimestre} + ' pedidos'"></span>
                             </p>
                             <p class="d-flex justify-content-between">
-                                <span>Último semestre</span>
-                                <span class="dots"></span>
-                                <span>300 pedidos</span>
+                                <span class="text-body-secondary">Último semestre</span>
+                                <span class="dots text-body-tertiary"></span>
+                                <span class="text-body-secondary" th:text="${comercial.pedidosSemestre} + ' pedidos'"></span>
                             </p>
                             <p class="d-flex justify-content-between">
-                                <span>Último año</span>
-                                <span class="dots"></span>
-                                <span>600  pedidos</span>
+                                <span class="text-body-secondary">Último año</span>
+                                <span class="dots text-body-tertiary"></span>
+                                <span class="text-body-secondary" th:text="${comercial.pedidosAnio} + ' pedidos'"></span>
                             </p>
                             <p class="d-flex justify-content-between">
-                                <span>Último lustro</span>
-                                <span class="dots"></span>
-                                <span>3000 pedidos</span>
+                                <span class="text-body-secondary">Último lustro</span>
+                                <span class="dots text-body-tertiary"></span>
+                                <span class="text-body-secondary" th:text="${comercial.pedidosLustro} + ' pedidos'"></span>
                             </p>
                         </div>
                     </div>

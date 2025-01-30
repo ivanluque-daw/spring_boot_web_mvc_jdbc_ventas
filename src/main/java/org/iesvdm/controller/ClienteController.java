@@ -3,6 +3,7 @@ package org.iesvdm.controller;
 import java.util.List;
 
 import jakarta.validation.Valid;
+import org.iesvdm.dto.ClienteDTO;
 import org.iesvdm.dto.ComercialDTO;
 import org.iesvdm.model.Cliente;
 import org.iesvdm.service.ClienteService;
@@ -52,10 +53,9 @@ public class ClienteController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public String details(@PathVariable Integer id, Model model) {
 		Cliente cliente = clienteService.find(id);
-		List<ComercialDTO> comerciales = clienteService.findWithComerciales(id);
+		ClienteDTO clienteDTO = clienteService.findWithComerciales(cliente);
 
-		model.addAttribute("cliente", cliente);
-		model.addAttribute("comerciales", comerciales);
+		model.addAttribute("cliente", clienteDTO);
 
 		return "clientes/details";
 	}
