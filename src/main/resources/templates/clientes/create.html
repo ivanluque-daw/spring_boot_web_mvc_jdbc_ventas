@@ -1,0 +1,64 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Crear cliente</title>
+    <th:block th:include="fragments/header.html :: headfiles"/>
+</head>
+<body>
+    <main class="container mt-2">
+        <header class="py-3 mb-4 border-bottom">
+            <div class="container d-flex flex-wrap justify-content-between align-items-center">
+                <h1 class="fs-2">Crear cliente</h1>
+                <div>
+                    <a href="/clientes" type="button" class="btn btn-outline-secondary">Volver</a>
+                </div>
+            </div>
+        </header>
+    </main>
+    <section class="container">
+        <form method="POST" th:object="${cliente}">
+            <div class="mb-3 d-flex gap-2">
+                <div class="w-100">
+                    <label class="form-label">Nombre</label>
+                    <input type="text" class="form-control" th:classappend="${#fields.hasErrors('nombre')} ? 'is-invalid' : ''" th:field="*{nombre}">
+                    <div class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}">
+                        <span th:text="${#fields.errors('nombre')[0]}" th:remove="tag"></span>
+                    </div>
+                </div>
+                <div class="w-100">
+                    <label class="form-label">Apellido 1</label>
+                    <input type="text" class="form-control" th:classappend="${#fields.hasErrors('apellido1')} ? 'is-invalid' : ''" th:field="*{apellido1}">
+                    <div class="form-text text-danger" th:if="${#fields.hasErrors('apellido1')}">
+                        <span th:text="${#fields.errors('apellido1')[0]}" th:remove="tag"></span>
+                    </div>
+                </div>
+                <div class="w-100">
+                    <label class="form-label">Apellido 2</label>
+                    <input type="text" class="form-control" th:classappend="${#fields.hasErrors('apellido2')} ? 'is-invalid' : ''" th:field="*{apellido2}">
+                    <div class="form-text text-danger" th:if="${#fields.hasErrors('apellido2')}">
+                        <span th:text="${#fields.errors('apellido2')[0]}" th:remove="tag"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-2 d-flex gap-2">
+                <div class="w-100">
+                    <label class="form-label">Ciudad</label>
+                    <input type="text" class="form-control" th:classappend="${#fields.hasErrors('ciudad')} ? 'is-invalid' : ''" th:field="*{ciudad}">
+                    <div class="form-text text-danger" th:if="${#fields.hasErrors('ciudad')}">
+                        <span th:text="${#fields.errors('ciudad')[0]}" th:remove="tag"></span>
+                    </div>
+                </div>
+                <div class="w-100">
+                    <label class="form-label">Categoria</label>
+                    <input type="number" class="form-control" th:classappend="${#fields.hasErrors('categoria')} ? 'is-invalid' : ''" th:field="*{categoria}">
+                    <div class="form-text text-danger" th:if="${#fields.hasErrors('categoria')}">
+                        <span th:text="${#fields.errors('categoria')[0]}" th:remove="tag"></span>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary w-100 mt-2">Crear cliente</button>
+        </form>
+    </section>
+</body>
+</html>

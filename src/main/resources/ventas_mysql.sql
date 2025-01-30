@@ -1,6 +1,6 @@
--- DROP DATABASE IF EXISTS ventas;
--- CREATE DATABASE ventas CHARACTER SET utf8mb4;
--- USE ventas;
+DROP DATABASE IF EXISTS ventas;
+CREATE DATABASE ventas CHARACTER SET utf8mb4;
+USE ventas;
 
 CREATE TABLE cliente (
                          id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -25,8 +25,9 @@ CREATE TABLE pedido (
                         fecha DATE,
                         id_cliente INT UNSIGNED NOT NULL,
                         id_comercial INT UNSIGNED NOT NULL,
-                        FOREIGN KEY (id_cliente) REFERENCES cliente(id),
-                        FOREIGN KEY (id_comercial) REFERENCES comercial(id)
+
+                        FOREIGN KEY (id_cliente) REFERENCES cliente(id) ON DELETE CASCADE,
+                        FOREIGN KEY (id_comercial) REFERENCES comercial(id) ON DELETE CASCADE
 );
 
 INSERT INTO cliente VALUES(1, 'Aarón', 'Rivero', 'Gómez', 'Almería', 100);

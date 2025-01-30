@@ -1,0 +1,52 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Clientes</title>
+	<th:block th:include="fragments/header.html :: headfiles"/>
+</head>
+<body>
+	<main class="container mt-2">
+		<header class="py-3 mb-4 border-bottom">
+			<div class="container d-flex flex-wrap justify-content-between align-items-center">
+				<h1 class="fs-2">Clientes</h1>
+				<div>
+					<a href="/clientes/crear" type="button" class="btn btn-primary">Crear cliente</a>
+				</div>
+			</div>
+		</header>
+	</main>
+	<section class="container">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Nombre</th>
+					<th>Apellido 1</th>
+					<th>Apellido 2</th>
+					<th>Ciudad</th>
+					<th>Categoria</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="cliente : ${listaClientes}">
+					<td class="align-middle" th:text="${cliente.id}"></td>
+					<td class="align-middle" th:text="${cliente.nombre}"></td>
+					<td class="align-middle" th:text="${cliente.apellido1}"></td>
+					<td class="align-middle" th:text="${cliente.apellido2}"></td>
+					<td class="align-middle" th:text="${cliente.ciudad}"></td>
+					<td class="align-middle" th:text="${cliente.categoria}"></td>
+					<td class="d-flex gap-1 w-auto">
+						<a th:href="@{/clientes/{id}(id=${cliente.id})}" class="btn btn-primary">Ver detalles</a>
+						<a th:href="@{/clientes/editar/{id}(id=${cliente.id})}" class="btn btn-secondary">Editar</a>
+						<form th:action="@{/clientes/borrar/__${cliente.id}__}" method="POST">
+							<button class="btn btn-danger">Eliminar</button>
+						</form>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</section>
+</body>
+</html>
