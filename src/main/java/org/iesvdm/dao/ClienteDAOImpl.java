@@ -11,9 +11,6 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 @Repository
 public class ClienteDAOImpl implements ClienteDAO {
     @Autowired
@@ -37,7 +34,6 @@ public class ClienteDAOImpl implements ClienteDAO {
             ps.setInt(idx, cliente.getCategoria());
             return ps;
         }, keyHolder);
-        log.info("Insertados {} registros.", rows);
 
         cliente.setId(keyHolder.getKey().intValue());
     }
@@ -54,7 +50,6 @@ public class ClienteDAOImpl implements ClienteDAO {
                         rs.getInt("categoría")
                 )
         );
-        log.info("Clients: {}", clientes.size());
 
         return clientes;
     }
@@ -76,7 +71,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 
     @Override
     public void update(Cliente cliente) {
-        int rows = jdbcTemplate.update("UPDATE cliente SET nombre = ?, apellido1 = ?, apellido2 = ?, ciudad = ?, categoría = ? WHERE id = ?"
+        jdbcTemplate.update("UPDATE cliente SET nombre = ?, apellido1 = ?, apellido2 = ?, ciudad = ?, categoría = ? WHERE id = ?"
                 , cliente.getNombre()
                 , cliente.getApellido1()
                 , cliente.getApellido2()
@@ -84,12 +79,10 @@ public class ClienteDAOImpl implements ClienteDAO {
                 , cliente.getCategoria()
                 , cliente.getId()
         );
-        log.info("Updated clients: {}", rows);
     }
 
     @Override
     public void delete(long id) {
-        int rows = jdbcTemplate.update("DELETE FROM cliente WHERE id = ?", id);
-        log.info("Deleted clients: {}", rows);
+        jdbcTemplate.update("DELETE FROM cliente WHERE id = ?", id);
     }
 }

@@ -1,0 +1,45 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'[' + ${comercial.id} + '] ' + 'Editar comercial'"></title>
+    <th:block th:include="fragments/header.html :: headfiles"/>
+</head>
+<body>
+<main class="container mt-2">
+    <header class="py-3 mb-4 border-bottom">
+        <div class="container d-flex flex-wrap justify-content-between align-items-center">
+            <h1 class="fs-2">Editar comercial</h1>
+            <div>
+                <a href="/comerciales" type="button" class="btn btn-outline-secondary">Volver</a>
+            </div>
+        </div>
+    </header>
+</main>
+<section class="container">
+    <form method="POST" th:object="${comercial}">
+        <div class="mb-3 d-flex gap-2">
+            <div class="w-100">
+                <label class="form-label">Nombre</label>
+                <input type="text" class="form-control" th:field="*{nombre}">
+            </div>
+            <div class="w-100">
+                <label class="form-label">Comision</label>
+                <input type="number" class="form-control" th:field="*{comision}">
+            </div>
+        </div>
+        <div class="mb-2 d-flex gap-2">
+            <div class="w-100">
+                <label class="form-label">Apellido 1</label>
+                <input type="text" class="form-control" th:field="*{apellido1}">
+            </div>
+            <div class="w-100">
+                <label class="form-label">Apellido 2</label>
+                <input type="text" class="form-control" th:field="*{apellido2}">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary w-100 mt-2">Editar comercial</button>
+    </form>
+</section>
+</body>
+</html>
